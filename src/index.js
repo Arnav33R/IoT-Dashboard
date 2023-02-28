@@ -1,4 +1,16 @@
-import "./styles.css";
+const canvas = document.getElementById("liveChart");
+const select = document.getElementById("selected-sensor");
+const unit = document.getElementById("unit");
+const select2Container = document.getElementById("select2-container");
+
+select.addEventListener("change", () => {
+  if (select.value === "temperature") {
+    select2Container.style.display = "block";
+  } else {
+    select2Container.style.display = "none";
+    unit.value = "";
+  }
+});
 
 var xyValues = [
   { x: 1, y: 28 },
@@ -13,7 +25,7 @@ var xyValues = [
   { x: 10, y: 15 }
 ];
 
-new Chart("liveChart", {
+const myChart = new Chart("liveChart", {
   type: "scatter",
   data: {
     datasets: [
@@ -32,5 +44,31 @@ new Chart("liveChart", {
     }
   }
 });
+
+// Assume you have a chart object called "myChart"
+const data = myChart.data;
+
+// Convert the data to CSV format
+const labels = ["x", "y"];
+const datasets = data.datasets[0].data;
+const csvData = datasets.map((point) => `"${point.x}",${point.y}`).join("\n");
+
+// Create a download link and button
+const downloadLink = document.createElement("a");
+const button = document.createElement("button");
+
+// Set the download link attributes
+downloadLink.href = URL.createObjectURL(new Blob([csvData], {type: "text/csv"}));
+downloadLink.download = "chart-data.csv";
+downloadLink.style.display = "none";
+
+// Set the button attributes
+button.innerText = "Download CSV";
+button.addEventListener("click", () => {
+  downloadLink.click();
+});
+
+// Append the button to the document body
+document.body.appendChild(button);
 
 document.getElementById("app").innerHTML = ``;
