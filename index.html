@@ -9,20 +9,19 @@
 
   <body>
     <div class="header">
-      <h3>IoT Dashboard for Smart Plant Pot</h3>
+      <p><b>Dashboard</b> for Smart Plant Pot</p>
     </div>
 
     <div class="container">
       <div class="row">
         <div class="item" id="1">
           <label for="selected-sensor" class="label"
-            ><h3>Select sensor data:</h3></label
+            ><h6>Select sensor data:</h6></label
           >
 
           <div class="select">
             <select id="selected-sensor">
-              <option value="temperaturec">Temperature C°</option>
-              <option value="temperaturef">Temperature F°</option>
+              <option value="temperature">Temperature</option>
               <option value="humidity">Relative Humidity</option>
               <option value="light">Light Intensity</option>
               <option value="moisture">Soil Moisture</option>
@@ -42,14 +41,17 @@
         <div class="longItem">
           <h2>Last 10 Readings</h2>
           <!-- Making charts directly accessible is usually incredibly difficult. Since this one is simple (just two axes, one data stream, no interactivity), it can be hidden (`aria-hidden="true"`) and its data made available in the following <table>. -->
-          <canvas id="liveChart" height="100px" aria-hidden="true"></canvas>
-
-          <!-- Charts are just visualizations of tabular data, so presenting that data in <table>s is easy. By default, tables are really easy for screen reader users to navigate thanks to specialized key commands, so we get some free functionality by using them! -->
-          <div id="sensor-data" class="visually-hidden">
-            <caption>
-              Temperature vs Reading No.
-            </caption>
-            <!-- Captions help contextualize data, especially in a case like this where the only other textual info is the h2 above -->
+          <canvas id="liveChart"></canvas>
+          <!-- Charts are just visualizations of tabular data, so presenting that data in <table>s is easy. By default, tables are really easy for screen reader users to navigate thanks to specialized key commands, so we get some free functionality by using them! -->         
+          <div id="chart">
+            <!-- chart code here -->
+            <div id="select2-container" style="display: none;">
+            <label for="unit">Unit:</label>
+            <select id="unit">
+              <option value="celsius">Celsius</option>
+              <option value="fahrenheit">Fahrenheit</option>
+            </select>
+          </div>
           </div>
         </div>
       </div>
