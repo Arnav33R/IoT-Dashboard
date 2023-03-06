@@ -3,7 +3,7 @@
   <head>
     <title>IoT Dashboard</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="old-styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   </head>
 
@@ -89,6 +89,70 @@
     </div>
 
     <div id="app"></div>
-    <script src="src/index.js"></script>
+    <script>
+var xyValues = [
+  { x: 1, y: 28 },
+  { x: 2, y: 26 },
+  { x: 3, y: 25 },
+  { x: 4, y: 29 },
+  { x: 5, y: 32 },
+  { x: 6, y: 23 },
+  { x: 7, y: 14 },
+  { x: 8, y: 24 },
+  { x: 9, y: 11 },
+  { x: 10, y: 15 }
+];
+
+const chart = new Chart("liveChart", {
+  type: "scatter",
+  data: {
+    datasets: [
+      {
+        pointRadius: 4,
+        label: 'Temperature (°F)', 
+        pointBackgroundColor: "rgb(0,0,255)",
+        data: xyValues
+      }
+    ]
+  },
+  options: {
+    legend: { display: false },
+    scales: {
+      xAxes: [{ ticks: { min: 0, max: 15 } }],
+      yAxes: [{ ticks: { min: 0, max: 100 } }]
+    }
+  }
+});
+
+
+var myTimer = setInterval(getTemp, 15000);
+
+function tempReply(response) {
+    xyValues.push({x: xyValues[xyValues.length-1].x + 1, y: response });
+    chart.data.datasets[0].data = xyValues;
+    chart.update();
+}
+
+function getTemp() {
+  httpGet("/temp", tempReply);
+}
+
+function httpGet(path, callback) {
+  var req = new XMLHttpRequest();
+  req.open("GET", path, true); 
+  req.onreadystatechange = function() 
+  { 
+    if (req.readyState == 4)
+    if(req.status == 200)
+      callback(req.responseText);
+    else
+      callback("Waiting...");
+  }
+  req.send(null);
+}
+
+document.getElementById("app").innerHTML = ``;
+
+    </script>
   </body>
 </html>
