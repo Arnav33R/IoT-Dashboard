@@ -1,0 +1,131 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #fff3cd;
+  color: black;
+  font-size: 30px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+select {
+  background-color: #f2f2f2;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  margin: 0 auto; /* horizontally center the select element */
+  border-radius: 4px;
+}
+
+option:checked {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.item {
+  background-color: white;
+  padding: 30px;
+  width: 11%;
+  border-width: 20px;
+  border-color: black;
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center; /* align items vertically */
+  justify-content: center; /* align items horizontally */
+  background-color: white;
+  padding: 30px;
+  width: 11%;
+  border-width: 20px;
+  border-color: black;
+  border-radius: 10px;
+}
+
+.item {
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-sizing: border-box; /* include border and padding in width calculation */
+}
+
+.tallItem {
+  background-color: white;
+  padding: 30px;
+  width: 11%;
+  height: 40%;
+  border-width: 20px;
+  border-color: black;
+  border-radius: 10px;
+}
+
+.longItem {
+  width: 50%;
+  background-color: white;
+  padding: 30px;
+  border-width: 20px;
+  border-color: black;
+  border-radius: 10px;
+}
+
+.button {
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.ub {
+  align-items: right;
+}
+
+.label {
+  font-size: 20px;
+  text-align: center;
+}
+
+.row {
+  background: #efefef;
+  padding: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.container {
+  padding: 0px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+}
