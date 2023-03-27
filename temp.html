@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IoT Dashboard</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </head>
+
+  <body>
+    <div class="header">
+      <p><b>Dashboard</b> for Smart Plant Pot</p>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="item" id="1">
+          <label for="selected-sensor" class="label"
+            ><h6>Select sensor data:</h6></label
+          >
+
+          <div class="select">
+            <select id="selected-sensor">
+              <option value="temperature">Temperature</option>
+              <option value="humidity">Relative Humidity</option>
+              <option value="light">Light Intensity</option>
+              <option value="moisture">Soil Moisture</option>
+              <option value="distance">Distance</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="item" id="2">
+          <label class="label"><h3>Click to update data:</h3></label>
+          <div class="ub">
+            <div class="button">Update data</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="longItem">
+          <h2>Last 10 Readings</h2>
+          <!-- Making charts directly accessible is usually incredibly difficult. Since this one is simple (just two axes, one data stream, no interactivity), it can be hidden (`aria-hidden="true"`) and its data made available in the following <table>. -->
+          <canvas id="liveChart"></canvas>
+          <!-- Charts are just visualizations of tabular data, so presenting that data in <table>s is easy. By default, tables are really easy for screen reader users to navigate thanks to specialized key commands, so we get some free functionality by using them! -->         
+          <div id="chart">
+            <!-- chart code here -->
+            <div id="select2-container" style="display: none;">
+            <label for="unit">Unit:</label>
+            <select id="unit">
+              <option value="celsius">Celsius</option>
+              <option value="fahrenheit">Fahrenheit</option>
+            </select>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="tallItem">
+         <h3>Data Highlights</h3>
+         Last read value: 15 </br>
+         Last read time:  16:18:17 </br>
+         Last read date: 2023-02-11 </br> 
+        </div>
+        <div class="tallItem"><form>
+            <label for="data">Data Reading:</label><br>
+            <input list="data"><br>
+            <datalist id="data">
+                <option value="Temperature">
+                <option value="Relative Humidity">
+                <option value="Light Intensity">
+                <option value="Soil Moisture">
+              </datalist>
+
+            <label for="comp">Comparison type</label><br>
+            <input list="comp">
+            <datalist id="comp">
+                <option value=">">
+                <option value=">=">
+                <option value="<">
+                <option value="<=">
+                <option value="=">
+              </datalist>
+
+            <label for="value">Value</label><br>
+            <input type="number" text="value">
+            </br></br>
+            <div class="button">Create Trigger</div>
+          </form></div>
+      </div>
+    </div>
+
+    <div id="app"></div>
+    <script>
+
+let isPaused = false;
+
+let displayInterval = 100;
+let lastDisplayUpdate = Date.now();
+
+let totalReadings = {
+  distance: 0,
+  humidity: 0,
+  temperature: 0,
+  humidity: 0,
+  
+
+}
+
+const select = document.getElementById("selected-sensor");
+const unit = document.getElementById("unit");
+const select2Container = document.getElementById("select2-container");
+
+select.addEventListener("change", () => {
+  if (select.value === "temperature") {
+    select2Container.style.display = "block";
+  } else {
+    select2Container.style.display = "none";
+    unit.value = "";
+  }
+});
+
+/*const canvas = document.getElementById("liveChart");
+const select = document.getElementById("selected-sensor");
+const unit = document.getElementById("unit");
+const select2Container = document.getElementById("select2-container");
+
+select.addEventListener("change", () => {
+  if (select.value === "temperature") {
+    select2Container.style.display = "block";
+  } else {
+    select2Container.style.display = "none";
+    unit.value = "";
+  }
+});
+
+/*const data = chart.data;
+
+// Convert the data to CSV format
+const labels = ["x", "y"];
+const datasets = data.datasets[0].data;
+const csvData = datasets.map((point) => `"${point.x}",${point.y}`).join("\n");
+
+// Create a download link and button
+const downloadLink = document.createElement("a");
+const button = document.createElement("button");
+
+// Set the download link attributes
+downloadLink.href = URL.createObjectURL(new Blob([csvData], {type: "text/csv"}));
+downloadLink.download = "chart-data.csv";
+downloadLink.style.display = "none";
+
+// Set the button attributes
+button.innerText = "Download CSV";
+button.addEventListener("click", () => {
+  downloadLink.click();
+});
+
+// Append the button to the document body
+document.body.appendChild(button);*/
+
+var xyValues = [
+];
+
+const chart = new Chart("liveChart", {
+  type: "scatter",
+  data: {
+    datasets: [
+      {
+        pointRadius: 4,
+        label: 'Temperature (°F)', 
+        pointBackgroundColor: "rgb(0,0,255)",
+        data: xyValues
+      }
+    ]
+  },
+  options: {
+    legend: { display: false },
+    scales: {
+      xAxes: [{ ticks: { min: 0, max: 20 } }],
+      yAxes: [{ ticks: { min: 0, max: 100 } }]
+    }
+  }
+});
+
+var myTimer = setInterval(getTemp, 5000);
+
+var index = 0;
+const labels = ["x", "y"];
+var csvData;
+
+function tempReply(response) {
+    xyValues.push({x: index++, y: response });
+    chart.data.datasets[0].data = xyValues;
+    csvData = `${labels.join(",")}\n${xyValues.map(({ x, y }) => `${x},${y}`).join("\n")}`;
+  
+     // Keep only the last 30 data points
+    if (xyValues.length > 20) {
+      chart.options.scales.xAxes[0].ticks.min += 1;
+      chart.options.scales.xAxes[0].ticks.max += 1;
+    }
+
+    /*let minY = Infinity;
+    let maxY = -Infinity;
+    for (let i = 0; i < xyValues.length; i++) {
+        minY = Math.min(minY, xyValues[i].y);
+        maxY = Math.max(maxY, xyValues[i].y);
+    }
+
+    chart.options.scales.yAxes[0].ticks.min = Math.floor(minY) - 1;
+    chart.options.scales.yAxes[0].ticks.max = Math.ceil(maxY) + 1;*/
+
+    chart.update();
+}
+let prevSelectValue = select.value;
+
+
+
+function getTemp() {
+  if (select.value !== prevSelectValue) {
+    prevSelectValue = select.value;
+    xyValues = [];
+    chart.data.datasets[0].data = xyValues;
+    index = 0;
+    chart.options.scales.xAxes[0].ticks.min = 0;
+    chart.options.scales.xAxes[0].ticks.max = 20;
+    chart.update();
+  }
+
+  if(select.value == "temperature"){
+    if(unit.value == "fahrenheit"){
+      httpGet("/tempF", tempReply);
+    }
+      
+    else{
+      httpGet("/tempC", tempReply);
+    }
+  }
+
+  else if (select.value == "humidity"){
+    httpGet("/hum", tempReply);
+  }
+
+  else if (select.value == "distance"){
+    httpGet("/dis", tempReply);
+  }
+}
+
+function httpGet(path, callback) {
+  var req = new XMLHttpRequest();
+  req.open("GET", path, true); 
+  req.onreadystatechange = function() 
+  { 
+    if (req.readyState == 4)
+    if(req.status == 200)
+      callback(req.responseText);
+    else
+      callback("Waiting...");
+  }
+  req.send(null);
+}
+
+
+// Create a download link and button
+const downloadLink = document.createElement("a");
+const button = document.createElement("button");
+
+// Set the download link attributes
+downloadLink.href = URL.createObjectURL(new Blob([csvData], {type: "text/csv"}));
+downloadLink.download = "chart-data.csv";
+downloadLink.style.display = "none";
+
+// Set the button attributes
+button.innerText = "Download CSV";
+button.addEventListener("click", () => {
+  downloadLink.click();
+});
+
+// Append the button to the document body
+document.body.appendChild(button);
+
+
+document.getElementById("app").innerHTML = ``;
+
+    </script>
+  </body>
+</html>
