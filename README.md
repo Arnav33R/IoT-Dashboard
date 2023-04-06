@@ -14,3 +14,4 @@ IoT Dashboard created for Dr. Moghimi at UC Davis.
 
 ### Setting up
 
+#### Set up Simple IDE
