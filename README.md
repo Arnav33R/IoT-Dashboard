@@ -12,6 +12,10 @@ IoT Dashboard created for Dr. Moghimi at UC Davis.
 
 ## Parallax Board
 
+For more detailed tutorials, refer to the official Parallax [documentation](https://learn.parallax.com/tutorials/language/propeller-c). However, all you need for the scope of this project, and for setting up a basic IoT module in general with the Propellor board can be found below:
+
 ### Setting up
 
 #### Set up Simple IDE
+
+First, install the appropriate 
