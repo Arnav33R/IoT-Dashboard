@@ -41,3 +41,5 @@ This section will serve as documentation for the code in this repository.
 This project makes use of JavaScript AJAX web techniques to set up client server communication. With AJAX, a web application can retrieve and send data from a server, in this case the Propeller Activity Board and its attached sensors, and do so asynchronously while updating the display and behavior of the web application based on the incoming (or outgoing) data. 
 
 The overall architecture of this project is composed of 3 main components, as seen in the image below. 
+
+![Architecture Representation](https://github.com/Arnav33R/IoT-Dashboard/blob/main/IoT Architecture.jpeg?raw=true)
