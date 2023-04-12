@@ -18,3 +18,25 @@ All of these tutorials can found on the official Parallax [documentation](https:
 
 #### [Set up Simple IDE](https://learn.parallax.com/tutorials/language/propeller-c/propeller-c-set-simpleide)
 
+#### [Install WiFi Module Drivers](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/wi-fi-module-firmware)
+
+#### [Connect WiFi Module to Propeller Board](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/connect-wx-wi-fi-module-your)
+
+#### [Join Module's WiFi](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/join-module%E2%80%99s-wi-fi)
+
+#### [Update WiFi Module Firmware](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/join-module%E2%80%99s-wi-fi()
+
+#### [Configure WiFI Module](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/configure-module-communication)
+
+#### [Programming Propeller over WiFi](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/program-propeller-over-wi-fi)
+
+#### [Connect WiFi Module to Another WiFi Network](https://learn.parallax.com/tutorials/language/propeller-c/parallax-wx-wi-fi-module-prop-c/join-another-wi-fi-network)
+
+## Code Documentation
+
+This section will serve as documentation for the code in this repository. 
+
+#### Overview of Architecture
+
+
+
