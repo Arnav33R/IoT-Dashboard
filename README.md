@@ -66,3 +66,37 @@ This code is written in C and is designed to run on the Propeller board. It read
 - **wavplayer.h**: A library that helps play audio files.
 - **abvolts.h**: A library that helps read analog data from sensors.
 
+
+#### Variables
+The code initializes the following variables to keep track of various aspects of the GET requests:
+
+- **event**: The type of event (e.g., GET, POST).
+- **id**: The ID of the GET request.
+- **handle**: The handle of the GET request.
+- **temp**: The path for temperature data in Fahrenheit and Celsius and humidity data.
+- **dis**: The path for distance data from a sensor.
+- **mois**: The path for soil moisture data.
+- **par**: The path for light intensity data.
+- **val**: The value read from a sensor.
+- **distance**: The distance measured by a sensor.
+
+#### Functions
+The code defines the following two functions:
+
+- **parking_assist()**: A function that plays an audio file with different volumes depending on the distance measured by a sensor.
+- **get_temp_data()**: A function that reads data from a temperature and humidity sensor and returns an array of the temperature in Fahrenheit and Celsius, and relative humidity.
+
+#### Main Function
+The code's main function performs the following steps:
+
+- Initializes the Wi-Fi module, the SD card reader, and the analog input pins.
+- Listens to GET requests at different paths.
+- Enters into an infinite loop to continually poll for events.
+- If a GET request is received, the code reads data from the appropriate sensor and returns the values to the client.
+- If the GET request is for distance data, the code also calls the parking_assist() function to play an audio file with different volumes depending on the distance measured by the sensor.
+
+
+
+
+
+
