@@ -53,7 +53,32 @@ The overall architecture of this project is composed of 3 main components, as se
 
 - **IoT System**: This is the entire module used for this project, which comprises of the Parallax Propeller Activity Board, the WiFi Module, and the attached sensors and actuators.
 
-### Server Backend
+### JavaScript Code
+
+This JavaScript code provides functionality to read data from different sensors on a device and display the data on a chart in real-time. The code is well-commented, making it easy to understand. Here is an explanation of the code:
+
+#### DOM Elements from HTML
+
+The first section of the code assigns variables to several DOM elements from the HTML page. These variables will be used later in the code to modify the elements, add event listeners, update them, or change their style properties. 
+
+- **dataSaveMethod**: the selected method for saving data
+- **dataSaveButton**: the button for downloading data
+- **select**: the dropdown menu for selecting the sensor
+- **unit**: the unit of measurement (e.g., Celsius or Fahrenheit) for the selected sensor
+- **tempUnit**: the container for the temperature unit dropdown menu
+
+#### Timer
+
+We set a timer to call the getVals function repeatedly every 5 seconds. The getVals function makes an HTTP request to the IoT device to get the sensor data.
+
+### Functions
+
+- **generateCSV**: generates a CSV file from a given data object and downloads it when the user clicks the download button. The function takes two parameters, the data object and the download button. It uses the Blob object to create a CSV file and sets the download button's attributes to download the generated file
+- **regReply**: callback function for regular sensor readings. The function receives the sensor data and appends it to the appropriate data obejct. It also updates the chart object and keeps only the last 20 data points.
+- **tempReply**: callback function for temperature and humidity readings. The function receives the temperature in Fahrenheit and Celsius and the humidity. It then checks the selected unit of measurement and the selected sensor and appends the appropriate data to the appropriate data object. It also updates the chart object and keeps only the last 20 data points. 
+
+
+### Server Backend (C)
 
 This code is written in C and is designed to run on the Propeller board. It reads data from various sensors and returns these values to the web application via WiFI.
 
