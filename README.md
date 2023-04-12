@@ -42,4 +42,4 @@ This project makes use of JavaScript AJAX web techniques to set up client server
 
 The overall architecture of this project is composed of 3 main components, as seen in the image below. 
 
-![Architecture Representation](https://github.com/Arnav33R/IoT-Dashboard/blob/main/IoT Architecture.jpeg?raw=true)
+![Architecture Representation](https://github.com/Arnav33R/IoT-Dashboard/blob/main/IoT%20Architecture.jpeg?raw=true)
