@@ -39,7 +39,7 @@ All of these tutorials can found on the official Parallax [documentation](https:
 
 This section will serve as documentation for the code in this repository. 
 
-#### Overview of Architecture
+### Overview of Architecture
 
 This project makes use of JavaScript AJAX web techniques to set up client server communication. With AJAX, a web application can retrieve and send data from a server, in this case the Propeller Activity Board and its attached sensors, and do so asynchronously while updating the display and behavior of the web application based on the incoming (or outgoing) data. 
 
@@ -53,11 +53,11 @@ The overall architecture of this project is composed of 3 main components, as se
 
 - **IoT System**: This is the entire module used for this project, which comprises of the Parallax Propeller Activity Board, the WiFi Module, and the attached sensors and actuators.
 
-#### Server Backend
+### Server Backend
 
 This code is written in C and is designed to run on the Propeller board. It reads data from various sensors and returns these values to the web application via WiFI.
 
-##### Libaries
+#### Libaries
 
 - **simpletools.h**: A library containing functions that simplify programming with the Propeller microcontroller.
 - **wifi.h**: A library that facilitates communication between the microcontroller and a Wi-Fi module.
