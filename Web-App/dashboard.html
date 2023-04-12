@@ -4,13 +4,16 @@
   <title>IoT Dashboard</title>
   <meta charset="utf-8">
 
+<!-- Include Stylesheets - this HTML uses the Bulma and Awesome CSS Libraries along with a custom stylesheet  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="styles-dashboard.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
+
 <body>
+<!-- Header of HTML Web Page includes Course Title and Course Flyer  -->
   <header>
     <div class="notice">
       <div class="container"><b>TAE 30:</b> IoT Dashboard</div>
@@ -20,19 +23,16 @@
                 <img src="../../../../Internet of Things IoT -Infographic Rnd5.jpg" alt="Flyer" style="width: 1100px; height: auto;" class="is-small">
         </div>
     </section>
-    
-    
   </header>
 
   <main class="container">
     <div class="columns">
 
+<!-- Dropdown menu for sensor selction  -->
       <div class="column is-one-quarter">
         <div class="panel" id="device-selector">
-
           <div class="field">
             <label for="selected-sensor" class="label">Select sensor data:</label>
-
             <div class="control">
               <div class="select">
                 <select id="selected-sensor">
@@ -48,13 +48,11 @@
         </div>
       </div>
 
+<!-- Dropdown menu for update frequency selection  -->
       <div class="column is-one-quarter">
         <div class="panel" id="flow-controls">
-
-          
           <div class="field">
             <label for="interval-selector" class="label">Data update frequency</label>
-
             <div class="control">
               <div class="select">
                 <select id="interval-selector">
@@ -69,6 +67,7 @@
         </div>
       </div>
 
+<!-- Dropdown menu for data download method selection  -->
       <div class="column is-one-quarter">
         <div class="panel" id="csv">
             <div class="field">
@@ -85,6 +84,7 @@
         </div>
       </div>
 
+<!-- Download Button  -->
       <div class="column is-one-quarter">
         <div class="panel" id="sensor-data">
                 <button type="download" id="download-button" class="button is-info">Click to save data</button>
@@ -92,10 +92,10 @@
       </div>
     </div>
 
+<!-- Graph to Display Live Data Readings  -->
     <div class="column">
         <div class="panel" id="live-data">
           <h2>Live sensor data</h2>
-
           <canvas id="liveChart" height="125px"></canvas>
           <div class="field" id="select-unit-container"  style="display: none;">
             <label for="unit" class="label">Unit: </label>
@@ -113,6 +113,7 @@
 </div>
 </main>
 
-  <script src="script-dashboard.js"></script>
+<!-- Include JavaScript Code  -->
+<script src="script-dashboard.js"></script>
 </body>
 </html>
