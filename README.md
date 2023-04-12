@@ -2,6 +2,9 @@
 
 IoT Dashboard created for TAE 030 — Mobile Communication & Computing Technologies for Agriculture & the Environment, Spring Quarter 2023, taught by Dr. Moghimi at the University of California, Davis.
 
+![Course Flyer](https://github.com/Arnav33R/IoT-Dashboard/blob/main/Flyer.jpg?raw=true)
+
+
 ## Introduction
 
 The overall goal of the project is to develop a smart pot, acting as a small-scale controlled environment system for a plant to detect various environmental factors and make decisions toachieve a desired environment for the plant to grow.
