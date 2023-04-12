@@ -2,7 +2,7 @@
 
 IoT Dashboard created for TAE 030 — Mobile Communication & Computing Technologies for Agriculture & the Environment, Spring Quarter 2023, taught by Dr. Moghimi at the University of California, Davis.
 
-![Course Flyer](https://github.com/Arnav33R/IoT-Dashboard/blob/main/Flyer.jpg?raw=true)
+![Course Flyer](https://github.com/Arnav33R/IoT-Dashboard/blob/main/Flyer.jpeg?raw=true)
 
 
 ## Introduction
