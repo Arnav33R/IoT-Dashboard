@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="styles-dashboard.css">
+
+<!-- Include Chart.js - used to create a display graph -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
@@ -99,6 +101,8 @@
           <canvas id="liveChart" height="125px"></canvas>
           <div class="field" id="select-unit-container"  style="display: none;">
             <label for="unit" class="label">Unit: </label>
+
+<!-- Dropdown menu for unit of Temperature reading (F or C)-->
             <div class="control">
               <div class="select" >
                 <select id="unit">
